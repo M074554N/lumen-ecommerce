@@ -159,12 +159,29 @@ class CategoryController extends BaseController
      *     ),
      * )
      */
-    public function showProducts(int $categoryId): JsonResponse
+    public function showProducts(int $categoryId, Request $request): JsonResponse
     {
         try {
+            $this->validate($request, [
+                'page' => 'numeric|min:1',
+            ]);
+
             $category = $this->categoryRepository->getCategoryWithProducts($categoryId);
 
             return $this->success($category);
+        } catch (ValidationException $exception) {
+            Log::error(ErrorCodes::translate(ErrorCodes::CATEGORY_VALIDATION_ERROR), [
+                'errorCode' => ErrorCodes::CATEGORY_VALIDATION_ERROR,
+                'exceptionMessage' => $exception->getMessage(),
+                'exceptionData' => $exception->getResponse()->getContent(),
+                'requestData' => $request->all(),
+            ]);
+
+            return $this->error(
+                ErrorCodes::CATEGORY_VALIDATION_ERROR,
+                ErrorCodes::translate(ErrorCodes::CATEGORY_VALIDATION_ERROR),
+                details: json_decode($exception->getResponse()->getContent(), true)
+            );
         } catch (NotFoundException $exception) {
             Log::error(ErrorCodes::translate(ErrorCodes::CATEGORY_NOT_FOUND), [
                 'errorCode' => ErrorCodes::CATEGORY_NOT_FOUND,
