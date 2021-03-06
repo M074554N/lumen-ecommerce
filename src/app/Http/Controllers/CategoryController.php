@@ -322,7 +322,7 @@ class CategoryController extends BaseController
      *          ),
      *     ),
      *     @OA\Response(
-     *          response="204",
+     *          response="202",
      *          description="Updated Successfully",
      *     ),
      *     @OA\Response(
@@ -356,7 +356,7 @@ class CategoryController extends BaseController
 
             return $this->success([
                 'category' => $category,
-            ], Response::HTTP_NO_CONTENT);
+            ], Response::HTTP_ACCEPTED);
         } catch (NotFoundException $exception) {
             Log::error(ErrorCodes::translate(ErrorCodes::CATEGORY_NOT_FOUND), [
                 'errorCode' => ErrorCodes::CATEGORY_NOT_FOUND,
