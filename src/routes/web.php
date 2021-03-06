@@ -14,17 +14,17 @@ $router->group(['prefix' => 'v1'], function () use ($router) {
     $router->group(['prefix' => 'products'], function () use ($router) {
         $router->get('/', 'ProductController@index');
         $router->post('/', 'ProductController@store');
-        $router->get('/{productId}', 'ProductController@show');
-        $router->put('/{productId}', 'ProductController@update');
-        $router->delete('/{productId}', 'ProductController@delete');
+        $router->get('/{productId:[0-9]+}', 'ProductController@show');
+        $router->put('/{productId:[0-9]+}', 'ProductController@update');
+        $router->delete('/{productId:[0-9]+}', 'ProductController@delete');
     });
 
     $router->group(['prefix' => 'categories'], function () use ($router) {
         $router->get('/', 'CategoryController@index');
-        $router->get('/{categoryId}', 'CategoryController@show');
-        $router->get('/{categoryId}/products', 'CategoryController@showProducts');
+        $router->get('/{categoryId:[0-9]+}', 'CategoryController@show');
+        $router->get('/{categoryId:[0-9]+}/products', 'CategoryController@showProducts');
         $router->post('/', 'CategoryController@store');
-        $router->put('/{categoryId}', 'CategoryController@update');
-        $router->delete('/{categoryId}', 'CategoryController@delete');
+        $router->put('/{categoryId:[0-9]+}', 'CategoryController@update');
+        $router->delete('/{categoryId:[0-9]+}', 'CategoryController@delete');
     });
 });
