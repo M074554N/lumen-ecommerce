@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: lumen_ecommerce_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./internal/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - lumen_ecommerce
+    links:
+      - php
+  php:
+    build:
+      context: .
+      dockerfile: ./internal/php/Dockerfile
+    container_name: lumen_ecommerce_php
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - mysql
+    ports:
+      - "9090:9000"
+    networks:
+      - lumen_ecommerce
+  mysql:
+    image: mysql:8.0.20
+    container_name: lumen_ecommerce_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lumen_ecommerce
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    ports:
+      - "3388:3306"
+    networks:
+      - lumen_ecommerce
+networks:
+  lumen_ecommerce:
+    driver: bridge
