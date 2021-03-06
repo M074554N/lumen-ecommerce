@@ -22,6 +22,7 @@ class CategoryController extends BaseController
     /**
      * @OA\Get(
      *     path="/v1/categories",
+     *     operationId="getCategories",
      *     summary="Get a list of categories",
      *     description="Get all the categories in the system",
      *     @OA\Response(
@@ -60,11 +61,26 @@ class CategoryController extends BaseController
     /**
      * @OA\Get(
      *     path="/v1/categories/{categoryId}",
+     *     operationId="getCategory",
      *     summary="Show category data",
      *     description="Show category information",
+     *     @OA\Parameter(
+     *          in="path",
+     *          name="categoryId",
+     *          description="The category ID",
+     *          example="1",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          ),
+     *     ),
      *     @OA\Response(
      *          response="200",
      *          description="Successful Response",
+     *     ),
+     *     @OA\Response(
+     *          response="404",
+     *          description="Not Found",
      *     ),
      *     @OA\Response(
      *          response="500",
@@ -107,6 +123,7 @@ class CategoryController extends BaseController
     /**
      * @OA\Get(
      *     path="/v1/categories/{categoryId}/products",
+     *     operationId="getCategoryWithProducts",
      *     summary="Show category data",
      *     description="Show category information + related products",
      *     @OA\Parameter(
@@ -131,6 +148,10 @@ class CategoryController extends BaseController
      *     @OA\Response(
      *          response="200",
      *          description="Successful Response",
+     *     ),
+     *     @OA\Response(
+     *          response="404",
+     *          description="Not Founde",
      *     ),
      *     @OA\Response(
      *          response="500",
@@ -173,8 +194,26 @@ class CategoryController extends BaseController
     /**
      * @OA\Post(
      *     path="/v1/categories",
+     *     operationId="addCategory",
      *     summary="Create a new category",
      *     description="Create a new category",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          description="New category object",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="name",
+     *                      example="New Category",
+     *                      @OA\Schema(
+     *                          type="string",
+     *                      ),
+     *                  ),
+     *              ),
+     *          ),
+     *     ),
      *     @OA\Response(
      *          response="200",
      *          description="Successful Response",
@@ -184,7 +223,7 @@ class CategoryController extends BaseController
      *          description="Created Successfully",
      *     ),
      *     @OA\Response(
-     *          response="422",
+     *          response="400",
      *          description="Bad Request",
      *     ),
      *     @OA\Response(
@@ -235,8 +274,36 @@ class CategoryController extends BaseController
     /**
      * @OA\Put(
      *     path="/v1/categories/{categoryId}",
+     *     operationId="updateCategory",
      *     summary="Update a category",
      *     description="Send a request to update a category",
+     *     @OA\Parameter(
+     *          in="path",
+     *          name="categoryId",
+     *          description="The category ID",
+     *          example="1",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          ),
+     *     ),
+     *     @OA\RequestBody(
+     *          required=true,
+     *          description="New category object",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="name",
+     *                      example="New Category Name",
+     *                      @OA\Schema(
+     *                          type="string",
+     *                      ),
+     *                  ),
+     *              ),
+     *          ),
+     *     ),
      *     @OA\Response(
      *          response="204",
      *          description="Updated Successfully",
@@ -247,7 +314,7 @@ class CategoryController extends BaseController
      *     ),
      *     @OA\Response(
      *          response="404",
-     *          description="Not Foundt",
+     *          description="Not Found",
      *     ),
      *     @OA\Response(
      *          response="500",
@@ -315,15 +382,26 @@ class CategoryController extends BaseController
     /**
      * @OA\Delete(
      *     path="/v1/categories/{categoryId}",
+     *     operationId="deleteCategory",
      *     summary="Delete a category",
      *     description="Delete a category",
+     *     @OA\Parameter(
+     *          in="path",
+     *          name="categoryId",
+     *          description="The category ID",
+     *          example="1",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          ),
+     *     ),
      *     @OA\Response(
      *          response="204",
      *          description="Deleted Successfully",
      *     ),
      *     @OA\Response(
      *          response="404",
-     *          description="Not Foundt",
+     *          description="Not Found",
      *     ),
      *     @OA\Response(
      *          response="500",
