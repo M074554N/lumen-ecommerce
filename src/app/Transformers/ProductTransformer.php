@@ -15,7 +15,7 @@ class ProductTransformer extends Transformer
         return [
             'productId' => $product->id,
             'name' => $product->name,
-            'price' => Money::centsToCurrency($product->price),
+            'price' => Money::centsToCurrency((int) $product->price),
             'categoryName' => $product->category->name,
             'createdAt' => Time::dateFormat($product->created_at),
             'updatedAt' => Time::dateFormat($product->updated_at),

@@ -11,9 +11,15 @@ class ProductRepository
 {
     public function all(): array
     {
-        $products = Product::orderBy('name')->get();
+        $products = Product::simplePaginate(Product::LIMIT);
 
-        return ProductTransformer::transformList($products);
+        $products->transform(
+            function ($product) {
+                return ProductTransformer::transform($product);
+            }
+        );
+
+        return $products->toArray();
     }
 
     /**
@@ -46,5 +52,16 @@ class ProductRepository
     public function store(array $inputData): array
     {
         return ProductTransformer::transform(Product::create($inputData));
+    }
+
+    public function update(Product $product, array $inputData): array
+    {
+        $product->update($inputData);
+        return ProductTransformer::transform($product);
+    }
+
+    public function delete(Product $product): ?bool
+    {
+        return $product->delete();
     }
 }
