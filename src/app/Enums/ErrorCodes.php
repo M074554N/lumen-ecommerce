@@ -20,12 +20,20 @@ class ErrorCodes
     public const CANNOT_ADD_PRODUCT = 'cannot_add_product';
     public const CANNOT_ADD_PRODUCT_TRANSLATION = 'Something wrong happened while adding the product.';
 
+    public const PRODUCT_VALIDATION_ERROR = 'product_validation_error';
+    public const PRODUCT_VALIDATION_ERROR_TRANSLATION = 'The provided data is incorrect';
+
+    public const PRODUCT_NOT_FOUND = 'product_not_found';
+    public const PRODUCT_NOT_FOUND_TRANSLATION = 'Product not found';
+
     public const ERRORS = [
         self::GENERAL_ERROR => self::GENERAL_ERROR_TRANSLATION,
         self::RESOURCE_NOT_FOUND => self::RESOURCE_NOT_FOUND_TRANSLATION,
         self::CATEGORY_VALIDATION_ERROR => self::CATEGORY_VALIDATION_ERROR_TRANSLATION,
         self::CATEGORY_NOT_FOUND => self::CATEGORY_NOT_FOUND_TRANSLATION,
         self::CANNOT_ADD_PRODUCT => self::CANNOT_ADD_PRODUCT_TRANSLATION,
+        self::PRODUCT_VALIDATION_ERROR => self::PRODUCT_VALIDATION_ERROR_TRANSLATION,
+        self::PRODUCT_NOT_FOUND => self::PRODUCT_NOT_FOUND_TRANSLATION,
     ];
 
     public static function translate(string $errorCode): string
