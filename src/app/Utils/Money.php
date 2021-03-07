@@ -7,6 +7,6 @@ class Money
 {
     public static function centsToCurrency(int $amount): float
     {
-        return $amount / 100;
+        return (float) $amount / 100;
     }
 }
