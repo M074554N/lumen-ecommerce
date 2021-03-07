@@ -3,10 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Swagger UI</title>
+    <title>Lumen Sample E-commerce API</title>
     <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@3.34.0/swagger-ui.css">
-    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <style>
         html
         {
