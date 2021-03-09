@@ -23,6 +23,8 @@ To easily interact with the containers and the app, we make use of the Make comm
 - `make logs` see containers logs
 - `make test` run all unit tests
 
+## Setting up and installation
+
 #### If you have `make` command on your system:
 1. run `git clone https://github.com/M074554N/lumen-ecommerce.git`
 2. then `cd ./lumen-ecommerce`
@@ -40,8 +42,11 @@ To easily interact with the containers and the app, we make use of the Make comm
 Then after everything is up and running, you can head to [http://localhost:8080](http://localhost:8080) to see the main 
 endpoint's welcome message.
 
-### API Documentation
+## API Documentation
 The API is fully documented using [Swagger (Open API)](https://swagger.io/) and you can see and test all endpoints using 
 the swagger-ui by heading to this url [/docs-ui](http://localhost:8080/docs-ui) and give it a try.
 
 All the swagger api documentation schema can be accessed from this endpoint [/v1/docs](http://localhost:8080/v1/docs)
+
+## Things Todo
+- refactoring of exceptions and logging
