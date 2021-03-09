@@ -1,13 +1,15 @@
 up:
-	cd src && docker-compose up -d
+	cp src/.env.example src/.env
+	docker-compose up -d
+	docker exec -it lumen_ecommerce_php composer install
 	docker exec -it lumen_ecommerce_php php artisan migrate
 
 up_build:
-	cd src && docker-compose up --build -d
+	docker-compose up --build -d
 	docker exec -it lumen_ecommerce_php php artisan migrate
 
 down:
-	cd src && docker-compose down
+	docker-compose down
 
 migrate:
 	docker exec -it lumen_ecommerce_php php artisan migrate
@@ -19,7 +21,7 @@ seed:
 	docker exec -it lumen_ecommerce_php php artisan db:seed
 
 logs:
-	cd src && docker-compose logs -f
+	docker-compose logs -f
 
 test:
-	cd src && docker exec -it lumen_ecommerce_php vendor/bin/phpunit
+	docker exec -it lumen_ecommerce_php vendor/bin/phpunit

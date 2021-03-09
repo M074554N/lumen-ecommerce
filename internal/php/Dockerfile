@@ -7,7 +7,10 @@ COPY src/composer.lock* src/composer.json* /var/www/html/
 WORKDIR /var/www/html
 
 # Install extensions
-RUN docker-php-ext-install tokenizer mysqli pdo_mysql
+RUN docker-php-ext-install tokenizer mysqli pdo_mysql opcache
+
+# Copy ini file
+COPY ./internal/php/php.ini /usr/local/etc/php/conf.d/custom.ini
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
