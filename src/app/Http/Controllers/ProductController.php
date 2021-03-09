@@ -24,10 +24,27 @@ class ProductController extends BaseController
      *     path="/v1/products",
      *     summary="Returns a list of products",
      *     description="Returns a list of products",
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="page",
+     *          description="The page number",
+     *          example="1",
+     *          @OA\Schema(
+     *              type="integer",
+     *          ),
+     *     ),
      *     @OA\Response(
      *          response="200",
      *          description="Successful Response",
-     *     )
+     *     ),
+     *     @OA\Response(
+     *          response="404",
+     *          description="Not Founde",
+     *     ),
+     *     @OA\Response(
+     *          response="500",
+     *          description="Internal Server Error",
+     *     ),
      * )
      */
     public function index(Request $request): JsonResponse
