@@ -19,15 +19,4 @@ class CategoryTransformer extends Transformer
             'updatedAt' => Time::dateFormat($category->updated_at),
         ];
     }
-
-    public static function transformList(Collection $categories): array
-    {
-        $list = [];
-
-        foreach ($categories as $category) {
-            $list[] = self::transform($category);
-        }
-
-        return $list;
-    }
 }

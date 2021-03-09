@@ -17,7 +17,11 @@ class CategoryRepository
     {
         $categories = Category::orderBy('name')->get();
 
-        return CategoryTransformer::transformList($categories);
+        $categories->transform(function ($category) {
+            return CategoryTransformer::transform($category);
+        });
+
+        return $categories;
     }
 
     /**
