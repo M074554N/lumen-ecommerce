@@ -51,3 +51,4 @@ All the swagger api documentation schema can be accessed from this endpoint [/v1
 ## Things Todo
 - refactoring of exceptions and logging
 - fix pagination max number limit
+- move `::count()` calls to the repository to not call DB twice
