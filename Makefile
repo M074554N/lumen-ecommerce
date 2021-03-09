@@ -5,7 +5,9 @@ up:
 	docker exec -it lumen_ecommerce_php php artisan migrate
 
 up_build:
-	docker-compose up --build -d
+	cp src/.env.example src/.env
+	docker-compose up -d --build
+	docker exec -it lumen_ecommerce_php composer install
 	docker exec -it lumen_ecommerce_php php artisan migrate
 
 down:
