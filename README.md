@@ -52,3 +52,4 @@ All the swagger api documentation schema can be accessed from this endpoint [/v1
 - refactoring of exceptions and logging
 - fix pagination max number limit
 - move `::count()` calls to the repository to not call DB twice
+- Make more use of PHP 8's features
