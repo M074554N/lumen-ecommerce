@@ -21,7 +21,7 @@ class CategoryRepository
             return CategoryTransformer::transform($category);
         });
 
-        return $categories;
+        return $categories->toArray();
     }
 
     /**
